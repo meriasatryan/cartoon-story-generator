@@ -4,7 +4,6 @@ from typing import List, Dict
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from openai import OpenAI
-from dotenv import load_dotenv
 from const import (
     PROMPT_FOLDER,
     STORY_PROMPT_FOLDER,

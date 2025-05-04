@@ -6,23 +6,10 @@ from diffusers import StableDiffusionControlNetPipeline, ControlNetModel, UniPCM
 from controlnet_aux import CannyDetector
 
 from const import CARTOONIZED_FOLDER
-from utils import crop_sides
+from utils import crop_sides, get_device  
 
 # Initialize the Canny edge detector once
 canny = CannyDetector()
-
-def get_device() -> torch.device:
-    """
-    Returns the best available device: CUDA > MPS > CPU.
-    
-    Returns:
-        torch.device: Optimal device available on the system.
-    """
-    if torch.cuda.is_available():
-        return torch.device("cuda")
-    elif torch.backends.mps.is_available():
-        return torch.device("mps")
-    return torch.device("cpu")
 
 def create_pipeline(
     model_name: str,
@@ -88,6 +75,7 @@ def cartoonize_images(
     os.makedirs(CARTOONIZED_FOLDER, exist_ok=True)
     device = get_device()
 
+    # Only create a pipeline if not already provided
     if pipe is None:
         pipe = create_pipeline(model_name, controlnet_name, steps, strength, guidance_scale, device)
 
@@ -96,7 +84,6 @@ def cartoonize_images(
     except Exception as e:
         raise RuntimeError(f"Failed to open image: {image_path} — {e}")
 
-    # Resize to square 728x728 if needed
     if input_image.width != input_image.height or input_image.width != 728:
         input_image = crop_sides(input_image, (728, 728))
 
@@ -114,7 +101,8 @@ def cartoonize_images(
         image_name = os.path.basename(image_path)
         output_path = os.path.join(CARTOONIZED_FOLDER, f"cartoon_controlnet_dreamshaper_{image_name}")
         result.save(output_path)
-        return output_path
 
     except Exception as e:
         raise RuntimeError(f"Cartoonization failed for {image_path}: {e}")
+
+    return output_path

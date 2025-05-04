@@ -41,12 +41,31 @@ Image description: "{caption}"
 
 # Template for generating a 3-part animated story from the cartoon caption
 STORY_INSTRUCTION_TEMPLATE = """
-You're writing a 3-part animated story based on this cartoon image: "{caption}".
+You're writing three independent animation scene prompts based on the cartoon image: "{caption}".
 
-Each scene must include:
-1. One simple character movement — like walking, flying, jumping, or looking around.
-2. One small background change — like light shifting, clouds moving, or wind blowing.
-3. A minimal camera movement — such as a slow zoom, a slight pan to the left or right, or a gentle tilt. The movement should feel natural and not distract from the calm scene.
+Each prompt must:
+- Be calm, grounded, and simple.
+- Include one clear character action (e.g., walking, jumping, turning head).
+- Include one small environmental change (e.g., snow falling, wind blowing, clouds drifting).
+- Include one camera movement (e.g., slow zoom, gentle pan, upward tilt).
+- Avoid any reference to sequence or order (do not say "first", "next", or "finally").
+- Be no longer than 1–2 sentences.
 
-Format the response as a JSON list with 'id' and 'prompt'.
+Format the result as a JSON list where each object has an "id" and a "prompt" field.
+
+Example output:
+[
+  {{
+    "id": 1,
+    "prompt": "The penguin turns its head to the side as a gentle wind brushes across the snow and the camera softly pans left."
+  }},
+  {{
+    "id": 2,
+    "prompt": "The penguin walks forward slowly while a few snowflakes begin to fall and the camera zooms in slightly."
+  }},
+  {{
+    "id": 3,
+    "prompt": "The penguin pauses near a rock as a faint light glows behind the mountains and the camera tilts upward."
+  }}
+]
 """

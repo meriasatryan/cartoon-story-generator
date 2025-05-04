@@ -5,7 +5,20 @@ import tempfile
 from typing import List
 from PIL import Image
 import imageio_ffmpeg
+import torch
 
+def get_device() -> torch.device:
+    """
+    Returns the best available device: CUDA > MPS > CPU.
+
+    Returns:
+        torch.device: Optimal device available on the system.
+    """
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    elif torch.backends.mps.is_available():
+        return torch.device("mps")
+    return torch.device("cpu")
 
 def crop_sides(image: Image.Image, target_size: tuple = (728, 728)) -> Image.Image:
     """

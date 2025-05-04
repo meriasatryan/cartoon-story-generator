@@ -1,23 +1,29 @@
-# Core dependencies
+# === Core Dependencies ===
 torch
 torchvision
 torchaudio
+
+# === Transformers and Diffusion Models ===
 transformers
 diffusers @ git+https://github.com/huggingface/diffusers.git
 controlnet-aux @ git+https://github.com/huggingface/controlnet_aux.git
 
-# Essential utilities
-pillow
-requests
-httpx
-filelock
-python-dotenv
-pyyaml
-pydantic
-anyio
-sniffio
-distro
-
-# Media & ML tools
-mediapipe
+# === Media and ML Tools ===
+accelerate
 ffmpeg-python
+imageio-ffmpeg
+mediapipe
+openai
+runwayml
+
+# === Utility Libraries ===
+anyio
+distro
+filelock
+httpx
+pillow
+pyyaml
+python-dotenv
+pydantic
+requests
+sniffio

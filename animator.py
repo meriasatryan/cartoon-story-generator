@@ -2,8 +2,6 @@ import os
 import base64
 import time
 import requests
-import cv2
-import subprocess
 from runwayml import RunwayML
 from const import STORY_VIDEO_FOLDER, STORY_PROMPT_FOLDER, STORY_FRAME_FOLDER, RUNWAY_API_KEY
 from utils import extract_last_frame, join_scenes_with_ffmpeg

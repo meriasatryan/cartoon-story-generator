@@ -48,7 +48,7 @@ cartoon_story_generator/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/meriasatryan/cartoon-story-generator.git
+git clone https://github.com/meriasatryan/cartoon_story_generator.git
 cd cartoon_story_generator
 ```
 
