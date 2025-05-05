@@ -14,7 +14,7 @@ ffmpeg-python
 imageio-ffmpeg
 mediapipe
 openai
-runwayml
+runwayml==3.0.1
 
 # === Utility Libraries ===
 anyio
