@@ -83,20 +83,16 @@ def cartoonize_images(
 
     control_image = canny(input_image).resize(input_image.size)
 
-    try:
-        result = pipe(
-            prompt=prompt,
-            image=control_image,
-            num_inference_steps=steps,
-            guidance_scale=guidance_scale,
-            strength=strength
-        ).images[0]
+    result = pipe(
+        prompt=prompt,
+        image=control_image,
+        num_inference_steps=steps,
+        guidance_scale=guidance_scale,
+        strength=strength
+    ).images[0]
 
-        image_name = os.path.basename(image_path)
-        output_path = os.path.join(CARTOONIZED_FOLDER, f"cartoon_controlnet_dreamshaper_{image_name}")
-        result.save(output_path)
-
-    except Exception as e:
-        raise RuntimeError(f"Cartoonization failed for {image_path}: {e}")
+    image_name = os.path.basename(image_path)
+    output_path = os.path.join(CARTOONIZED_FOLDER, f"cartoon_controlnet_dreamshaper_{image_name}")
+    result.save(output_path)
 
     return output_path
