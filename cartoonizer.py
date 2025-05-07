@@ -14,9 +14,6 @@ canny = CannyDetector()
 def create_pipeline(
     model_name: str,
     controlnet_name: str,
-    steps: int,
-    strength: float,
-    guidance_scale: float,
     device: torch.device
 ) -> StableDiffusionControlNetPipeline:
     """
@@ -25,9 +22,6 @@ def create_pipeline(
     Args:
         model_name (str): Base model identifier from Hugging Face.
         controlnet_name (str): ControlNet model identifier.
-        steps (int): Number of inference steps.
-        strength (float): Denoising strength.
-        guidance_scale (float): Classifier-free guidance scale.
         device (torch.device): Device to run the model.
 
     Returns:
