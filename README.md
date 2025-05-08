@@ -125,7 +125,7 @@ All dependencies are listed in `requirements.txt`.
 ### Input Image:
 Here is an example of the input image that starts the process:
 
-<img src="data/photos/photo1.jpg" />
+<img src="data/photos/photo1.jpg" width="600"/>
 
 
 ### Cartoonized Image:
